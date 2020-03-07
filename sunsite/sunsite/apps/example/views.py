@@ -44,27 +44,18 @@ def index(request):
                         if not check_response(response_city):
                             return HttpResponse("Error: " + str(response_city))
 
-                        temperature = response_flat.json()['data']
-                        if Area.objects.filter(city=city_id, area=area, house=home, flat=flat).exists():
-                            obj = Area.objects.get(city=city_id, area=area, house=home, flat=flat)
-                            if temperature.is_integer():
-                                # '*' - разделение температур
-                                obj.indications += '*' + temperature
-                                obj.save()
-                            else:
-                                # '#' - если запрос некоректен
-                                obj.indications += '#'
-                                obj.save()
+                        temperature = str(response_flat.json()['data'])
 
-                        else:
-                            if temperature.is_integer():
-                                # '*' - разделение температур
-                                obj = Area(city=city_id, area=area, house=home, flat=flat, indications=temperature)
-                                obj.save()
-                            else:
-                                # '#' - если запрос некоректен
-                                obj = Area(city=city_id, area=area, house=home, flat=flat, indications='#')
-                                obj.save()
+                        try:
+                            obj = Area.objects.filter(city=city_id, area=area, house=home, flat=flat)
+                            # вот тут поправить
+                            # '*' - разделение температур
+                            obj.indications += '*' + temperature
+                            obj.save()
+                        except Exception as a:
+                            # вот тут поправить
+                            obj = Area(city=city_id, area=area, house=home, flat=flat, indications=temperature)
+                            obj.save()
 
     except Exception as e:
         return HttpResponse("Error: " + e.__class__.__name__)
