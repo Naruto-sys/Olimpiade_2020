@@ -45,8 +45,26 @@ def index(request):
                             return HttpResponse("Error: " + str(response_city))
 
                         temperature = response_flat.json()['data']
-                        # if Area.objects.get(city=city_id and area=area)
+                        if Area.objects.filter(city=city_id, area=area, house=home, flat=flat).exists():
+                            obj = Area.objects.get(city=city_id, area=area, house=home, flat=flat)
+                            if temperature.is_integer():
+                                # '*' - разделение температур
+                                obj.indications += '*' + temperature
+                                obj.save()
+                            else:
+                                # '#' - если запрос некоректен
+                                obj.indications += '#'
+                                obj.save()
 
+                        else:
+                            if temperature.is_integer():
+                                # '*' - разделение температур
+                                obj = Area(city=city_id, area=area, house=home, flat=flat, indications=temperature)
+                                obj.save()
+                            else:
+                                # '#' - если запрос некоректен
+                                obj = Area(city=city_id, area=area, house=home, flat=flat, indications='#')
+                                obj.save()
 
     except Exception as e:
         return HttpResponse("Error: " + e.__class__.__name__)
