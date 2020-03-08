@@ -47,13 +47,13 @@ def index(request):
                         temperature = str(response_flat.json()['data'])
 
                         try:
-                            obj = Area.objects.filter(city=city_id, area=area, house=home, flat=flat)
+                            obj = Area.objects.get(city=city_id, area=area, house=home, flat=flat)
                             # вот тут поправить
                             # '*' - разделение температур
-                            obj.indications += '*' + temperature
+                            data = obj.indications
+                            obj.indications = data + '*' + temperature
                             obj.save()
                         except Exception as a:
-                            # вот тут поправить
                             obj = Area(city=city_id, area=area, house=home, flat=flat, indications=temperature)
                             obj.save()
 
