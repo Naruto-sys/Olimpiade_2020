@@ -5,6 +5,7 @@ import requests
 from .Functions import check_response
 import datetime
 import time
+from .forms import UserForm
 
 
 def index(request):
@@ -77,3 +78,19 @@ def index(request):
         except Exception as e:
             continue
     return HttpResponse("Privet! Solnishko! Rabotai!")
+
+
+def main(request):
+    LINK = 'https://dt.miet.ru/ppo_it/api/'
+    HEADER = {'X-Auth-Token': 'qohuw6zrr4z74qn2'}
+    response = requests.get(LINK, headers=HEADER)
+    cities = [_['city_name'] for _ in response.json()['data']]
+
+    submitbutton = request.POST.get("submit")
+
+    context = {
+        'cities': cities,
+        'submitbutton': submitbutton,
+    }
+
+    return render(request, 'example/page.html', context)
