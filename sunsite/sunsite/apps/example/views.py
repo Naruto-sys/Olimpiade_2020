@@ -81,20 +81,16 @@ def index(request):
 
 
 def main(request):
+    LINK = 'https://dt.miet.ru/ppo_it/api/'
+    HEADER = {'X-Auth-Token': 'qohuw6zrr4z74qn2'}
+    response = requests.get(LINK, headers=HEADER)
+    cities = [_['city_name'] for _ in response.json()['data']]
+
     submitbutton = request.POST.get("submit")
 
-    firstname = ''
-    lastname = ''
-    emailvalue = ''
-
-    form = UserForm(request.POST or None)
-    if form.is_valid():
-        firstname = form.cleaned_data.get("first_name")
-        lastname = form.cleaned_data.get("last_name")
-        emailvalue = form.cleaned_data.get("email")
-
-    context = {'form': form, 'firstname': firstname,
-               'lastname': lastname, 'submitbutton': submitbutton,
-               'emailvalue': emailvalue}
+    context = {
+        'cities': cities,
+        'submitbutton': submitbutton,
+    }
 
     return render(request, 'example/page.html', context)
