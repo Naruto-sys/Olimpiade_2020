@@ -4,17 +4,18 @@
     <title>User Information Form</title>
 </head>
 <body>
-<form action="manage.py" method="POST">
+<form action="" method="POST">
     {% csrf_token %}
-    <select title="my_options">
+    <select title="my_options" name="select_city">
         {% for city in cities %}
         <option>{{city}}</option>
         {% endfor %}
     </select><br>
+    <p></p>
     <input type="Submit" name="submit" value="Submit"/>
 </form>
 {% if submitbutton == "Submit" %}
-<h1>Chosen city</h1>
+<h1>Chosen city {{choosen_city}}</h1>
 {% endif %}
 </body>
 <script>

@@ -87,8 +87,10 @@ def main(request):
     cities = [_['city_name'] for _ in response.json()['data']]
 
     submitbutton = request.POST.get("submit")
-
+    choosen_city = request.POST.get("select_city")
+    print(choosen_city)
     context = {
+        'choosen_city': choosen_city,
         'cities': cities,
         'submitbutton': submitbutton,
     }
