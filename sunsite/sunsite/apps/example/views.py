@@ -5,6 +5,7 @@ import requests
 from .Functions import check_response
 import datetime
 import time
+from .forms import UserForm
 
 
 def index(request):
@@ -77,3 +78,23 @@ def index(request):
         except Exception as e:
             continue
     return HttpResponse("Privet! Solnishko! Rabotai!")
+
+
+def main(request):
+    submitbutton = request.POST.get("submit")
+
+    firstname = ''
+    lastname = ''
+    emailvalue = ''
+
+    form = UserForm(request.POST or None)
+    if form.is_valid():
+        firstname = form.cleaned_data.get("first_name")
+        lastname = form.cleaned_data.get("last_name")
+        emailvalue = form.cleaned_data.get("email")
+
+    context = {'form': form, 'firstname': firstname,
+               'lastname': lastname, 'submitbutton': submitbutton,
+               'emailvalue': emailvalue}
+
+    return render(request, 'example/page.html', context)
