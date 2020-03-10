@@ -1,25 +1,38 @@
-<html>
 <head>
     <meta charset="UTF-8">
     <title>User Information Form</title>
 </head>
-<body>
-<form action="" method="POST">
+<form action="" method="post">
     {% csrf_token %}
-    <select title="my_options" name="select_city">
+    <h2>Город</h2>
+    <select title="my_options" name="city">
         {% for city in cities %}
         <option>{{city}}</option>
         {% endfor %}
-    </select><br>
+    </select>
     <p></p>
-    <input type="Submit" name="submit" value="Submit"/>
+    <h2>Район</h2>
+    <input type="text" name="area" value="{{area}}">
+    <p></p>
+    <h2>Дом</h2>
+    <input type="text" name="house" value="{{house}}">
+    <p></p>
+    <h2>Квартира</h2>
+    <input type="text" name="flat" value="{{flat}}">
+    <p></p>
+    <input type="Submit" name="submit" value="Узнать температуру"/>
 </form>
-{% if submitbutton == "Submit" %}
-<h1>Chosen city {{choosen_city}}</h1>
+{% if "Узнать" in submitbutton %}
+{% if '°' not in temperature %}
+<h1>{{temperature}}</h1>
+{% else %}
+<h1>Температура: {{temperature}}</h1>
+{% endif %}
 {% endif %}
 </body>
 <script>
     'undefined'=== typeof _trfq || (window._trfq = []);'undefined'=== typeof _trfd && (window._trfd=[]),_trfd.push({'tccl.baseHost':'secureserver.net'}),_trfd.push({'ap':'cpsh'},{'server':'p3plcpnl0769'})
+
 </script>
 
 </html>
