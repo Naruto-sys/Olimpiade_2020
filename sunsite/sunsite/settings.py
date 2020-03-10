@@ -10,7 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
-import os, sys
+import os
+import sys
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -33,7 +34,11 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'example.apps.ExampleConfig',
+    'first_page.apps.FirstPageConfig',
+    'second_page.apps.SecondPageConfig',
+    'third_page.apps.ThirdPageConfig',
+    'fourth_page.apps.FourthPageConfig',
+    'fifth_page.apps.FifthPageConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

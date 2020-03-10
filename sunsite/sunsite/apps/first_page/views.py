@@ -5,10 +5,9 @@ import requests
 from .Functions import check_response
 import datetime
 import time
-from .forms import UserForm
 
 
-def index(request):
+def collection(request):
     HEADER = {'X-Auth-Token': 'qohuw6zrr4z74qn2'}
     LINK = 'https://dt.miet.ru/ppo_it/api/'
     link = 'https://dt.miet.ru/ppo_it/api/'
@@ -132,5 +131,4 @@ def main(request):
         'cities': cities,
         'submitbutton': submitbutton,
     }
-    print(area, house, flat, city)
-    return render(request, 'example/page.html', context)
+    return render(request, 'first_page/first_page.html', context)
