@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Area, City
 import requests
-from .Functions import check_response
+from .Funcs import check_response
 import datetime
 import time
 

@@ -1,6 +1,6 @@
 from django.shortcuts import render
 import requests
-from .Functions import make_plot
+from .Funcs import make_plot
 
 
 def main(request):
@@ -12,6 +12,7 @@ def main(request):
     city = request.POST.get("city")
 
     city_number = ''
+    plot = None
 
     cities = [_['city_name'] for _ in response.json()['data']]
 
@@ -27,8 +28,9 @@ def main(request):
                 city_number = str(town['city_id'])
                 break
         make_plot(int(city_number), city)
-
+        plot = '100'
     context = {
+        'plot': plot,
         'city': city,
         'cities': cities,
         'submitbutton': submitbutton,

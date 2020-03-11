@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'imagekit',
 ]
 
 MIDDLEWARE = [
@@ -128,3 +129,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+MEDIA_URL = '/media/'
+
+ROOT_PATH = os.path.join(os.path.dirname(__file__), '..')  # up one level from settings.py
+STATICFILES_DIRS = (
+    os.path.abspath(os.path.join(ROOT_PATH, 'static')),  # static is on root level
+)
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.core.context_processors.static',
+)

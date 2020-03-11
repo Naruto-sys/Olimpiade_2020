@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.urls import path, include
 from . import views
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+
 
 urlpatterns = [
     path('first_page/', include('first_page.urls')),
@@ -24,3 +26,5 @@ urlpatterns = [
     path('fifth_page/', include('fifth_page.urls')),
     path('', views.main, name='main')
 ]
+
+urlpatterns += staticfiles_urlpatterns()
