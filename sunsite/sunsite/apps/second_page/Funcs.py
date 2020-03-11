@@ -15,7 +15,6 @@ def make_plot(city_num, city_name):
     con = sqlite3.connect(".\db.sqlite3")
     cur = con.cursor()
     result = cur.execute(f"""SELECT indications FROM example_city WHERE city={city_num}""").fetchall()
-    print(result)
     data = [int(_) for _ in result[0][0].split('*')]
 
     x = np.arange(1, len(data) + 1)

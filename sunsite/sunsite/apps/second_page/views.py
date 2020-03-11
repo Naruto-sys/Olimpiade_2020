@@ -1,6 +1,6 @@
 from django.shortcuts import render
 import requests
-from .Functions import make_plot
+from .Funcs import make_plot
 
 
 def main(request):
