@@ -4,4 +4,6 @@ import requests
 
 
 def main(request):
-    return HttpResponse('5')
+    context = {}
+    return render(request, 'fifth_page/fifth_page.html', context)
+
