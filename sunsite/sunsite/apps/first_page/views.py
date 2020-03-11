@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Area, City
+from .models import Temperature, City
 import requests
 from .Funcs import check_response
 import datetime
@@ -63,20 +63,20 @@ def collection(request):
                             temperature = str(response_flat.json()['data'])
 
                             try:
-                                obj = Area.objects.get(city=city_id, area=area, house=home, flat=flat)
+                                obj = Temperature.objects.get(city=city_id, area=area, house=home, flat=flat)
                                 # '*' - разделение температур
                                 data = obj.indications
                                 obj.indications = data + '*' + temperature
                                 obj.save()
                             except Exception:
-                                obj = Area(city=city_id, area=area, house=home, flat=flat, indications=temperature)
+                                obj = Temperature(city=city_id, area=area, house=home, flat=flat, indications=temperature)
                                 obj.save()
             if (datetime.datetime.now() - time_iter).seconds < 320:
                 time.sleep(320 - (datetime.datetime.now() - time_iter).seconds)
 
         except Exception as e:
             continue
-    return HttpResponse("Privet! Solnishko! Rabotai!")
+    return HttpResponse("Privet, Solnyshko! Vse Rabotaet!")
 
 
 def main(request):

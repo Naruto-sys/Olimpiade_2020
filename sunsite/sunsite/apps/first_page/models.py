@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class Area(models.Model):
+class Temperature(models.Model):
     id = models.IntegerField(primary_key=True)
     city = models.IntegerField('city', default=0)
     area = models.IntegerField('area', default=0)

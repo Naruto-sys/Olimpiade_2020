@@ -19,7 +19,7 @@ def check_response(response):
 def make_plot(city_num, city_name):
     con = sqlite3.connect(".\db.sqlite3")
     cur = con.cursor()
-    result = cur.execute(f"""SELECT area, indications FROM example_area WHERE city={city_num}""").fetchall()
+    result = cur.execute(f"""SELECT area, indications FROM first_page_temperature WHERE city={city_num}""").fetchall()
 
     area1 = []
     area2 = []
