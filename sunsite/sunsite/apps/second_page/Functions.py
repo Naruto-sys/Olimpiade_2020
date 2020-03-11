@@ -1,7 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import sqlite3
-from django.http import HttpResponse
 
 
 def check_response(response):
@@ -12,12 +11,12 @@ def check_response(response):
     return True
 
 
-def make_plot(city_num):
+def make_plot(city_num, city_name):
     con = sqlite3.connect(".\db.sqlite3")
     cur = con.cursor()
-    result = cur.execute("""SELECT * FROM example_area""").fetchall()
-    print(city_num)
-    data = [int(_) for _ in result[city_num][-2].split('*')]
+    result = cur.execute(f"""SELECT indications FROM example_city WHERE city={city_num}""").fetchall()
+    print(result)
+    data = [int(_) for _ in result[0][0].split('*')]
 
     x = np.arange(1, len(data) + 1)
     y = np.array(data)
@@ -28,10 +27,10 @@ def make_plot(city_num):
             linewidth=1,
             color='darkblue')
 
-    plt.title('График температуры')
+    plt.title(f'График температуры в городе {city_name}')
 
-    plt.xlabel('Номер запроса')
-    plt.ylabel('Температура')
+    plt.xlabel('Номер запроса (раз в полдня)')
+    plt.ylabel('Температура, °C')
 
     plt.grid()
 

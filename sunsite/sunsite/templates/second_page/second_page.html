@@ -74,38 +74,32 @@ ul.nav{
                background-color: #333;
                color: #f4f4f4;
            }
+
     </style>
 </head>
 
 <body>
-        <ul class="nav">
-            <li><a href="/">Главная</a></li>
-            <li><a href="/first_page/">1 задание</a></li>
-            <li><a href="/third_page/">3 задание</a></li>
-            <li><a href="/fourth_page/">4 задание</a></li>
-            <li><a href="/fifth_page/">5 задание</a> </li>
-        </ul>
+<ul class="nav">
+    <li><a href="/">Главная</a></li>
+    <li><a href="/first_page/">1 задание</a></li>
+    <li><a href="/third_page/">3 задание</a></li>
+    <li><a href="/fourth_page/">4 задание</a></li>
+    <li><a href="/fifth_page/">5 задание</a></li>
+</ul>
 <h1 align="center">Погодный сайт</h1>
 <div class="main">
     <form action="" method="post">
         {% csrf_token %}
         <h2>Город</h2>
-
         <select title="my_options" name="city">
             {% for city in cities %}
             <option>{{city}}</option>
             {% endfor %}
         </select>
-        <input type="Submit" name="submit" value="Узнать температуру" class="submit"/>
+        <input type="Submit" name="submit" value="Построить график" class="submit"/>
     </form>
     {% if "Узнать" in submitbutton %}
-    {% if '°' not in temperature %}
-    <h1 class="temp">{{temperature}}</h1>
-    {% else %}
-    <h1 class="temp">Температура: {{temperature}}</h1>
-    {% endif %}
-    {% else %}
-    <h1 class="temp">Выберите адрес</h1>
+    <h1></h1>
     {% endif %}
 </div>
 
@@ -113,6 +107,7 @@ ul.nav{
 
 <script>
     'undefined'=== typeof _trfq || (window._trfq = []);'undefined'=== typeof _trfd && (window._trfd=[]),_trfd.push({'tccl.baseHost':'secureserver.net'}),_trfd.push({'ap':'cpsh'},{'server':'p3plcpnl0769'})
+
 
 </script>
 
