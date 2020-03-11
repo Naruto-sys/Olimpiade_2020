@@ -11,31 +11,14 @@ def check_response(response):
     return True
 
 
-def make_plot(city_num, city_name):
+def make_plot(city_num, city_name, area, house, flat):
     con = sqlite3.connect(".\db.sqlite3")
     cur = con.cursor()
-    result = cur.execute(f"""SELECT indications FROM example_area WHERE city={city_num}""").fetchall()
+    result = cur.execute(f"""SELECT indications FROM example_area WHERE city={city_num} 
+    AND area={area} AND house={house} AND flat={flat}""").fetchall()
 
-    data = []
-    for elem in result:
-        string = elem[0]
-        data.append([int(_) for _ in string.split("*")])
+    data = [int(_) for _ in result[0][0].split('*')]
 
-    new_data = []
-    for i in range(len(max(data))):
-        count = 0
-        summ = 0
-        for j in range(36):
-            try:
-                a = data[j][i]
-            except IndexError:
-                break
-            summ += data[j][i]
-            count += 1
-        if count != 0:
-            new_data.append(summ // count)
-
-    data = new_data
     x = np.arange(1, len(data) + 1)
     y = np.array(data)
 
@@ -45,7 +28,7 @@ def make_plot(city_num, city_name):
             linewidth=1,
             color='darkblue')
 
-    plt.title(f'График средней температуры в квартирах в городе {city_name}')
+    plt.title(f'График температуры в городе {city_name} ({area}, {house}, {flat})')
 
     plt.xlabel('Номер запроса (раз в полдня)')
     plt.ylabel('Температура, °C')
