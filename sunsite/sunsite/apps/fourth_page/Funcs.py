@@ -24,9 +24,7 @@ def make_plot(city_num, city_name, area, house, flat):
 
     fig, ax = plt.subplots()
 
-    ax.plot(x, y,
-            linewidth=1,
-            color='darkblue')
+    ax.plot(x, y, linewidth=1, сolor='darkblue')
 
     plt.title(f'График температуры в городе {city_name} ({area}, {house}, {flat})')
 
