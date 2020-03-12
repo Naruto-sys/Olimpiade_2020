@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>First page</title>
+    <style type="text/css">
+    h1 {
+    font-size: 180%;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    color: #0277bd;
+    margin: 30 px;
+   }
+
+    h2 {
+    font-size: 135%;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    color: #1565c0;
+   }
+
+   select {
+      background: #b3e5fc;
+      padding: 5px;
+      width: 300px;
+      height: 30px;
+   }
+
+   input {
+   border-radius: 10px;
+   padding: 2px;
+   width: 140px;
+   height: 20px;
+   background: #b3e5fc;
+   }
+   .main {
+       margin-left: 10%;
+   }
+
+   .submit {
+   margin-left: 30%;
+   border-radius: 10px;
+   height: 40px;
+   width: 170px;
+   background: #81d4fa;
+   }
+
+    body {
+    background: linear-gradient(to left, #2bc0e4, #eaecc6);
+    }
+   .temp {
+   margin-left: 30%;
+   }
+
+ul.nav{
+        text-align:center;
+      margin-left: 0px;
+      padding-left: 0px;
+      list-style: none;
+      }
+      .nav li {
+      display: inline;
+      }
+      ul.nav a {
+           display: inline-block;
+           width: 5em;
+           padding:10px;
+           width: 200px;
+           background-color: #81d4fa;
+           border: 1px solid #333;
+           text-decoration: none;
+           color: #333;
+           text-align: center;
+           }
+           ul.nav a:hover{
+               background-color: #333;
+               color: #f4f4f4;
+           }
+img {
+    margin-top:5px;
+}
+    </style>
+</head>
+
+<body>
+        <ul class="nav">
+            <li><a href="/">Главная</a></li>
+            <li><a href="/second_page/">2 задание</a></li>
+            <li><a href="/third_page/">3 задание</a></li>
+            <li><a href="/fourth_page/">4 задание</a></li>
+            <li><a href="/fifth_page/">5 задание</a> </li>
+        </ul>
+<h1 align="center">Погодный сайт</h1>
+<h2 align="center">Испытание 1</h2>
+<div class="main">
+    <form action="" method="post">
+        {% csrf_token %}
+        <h2>Город</h2>
+
+        <select title="Choose" name="city">
+            {% for city in cities %}
+            <option>{{city}}</option>
+            {% endfor %}
+        </select>
+        <p></p>
+        <h2>Район</h2>
+        <input type="text" name="area" value="{{area}}">
+        <p></p>
+        <h2>Дом</h2>
+        <input type="text" name="house" value="{{house}}">
+        <p></p>
+        <h2>Квартира</h2>
+        <input type="text" name="flat" value="{{flat}}">
+        <p></p>
+        <input type="Submit" name="submit" value="Узнать температуру" class="submit"/>
+    </form>
+    {% if "Узнать" in submitbutton %}
+    {% if '°' not in temperature %}
+    <h1 class="temp">{{temperature}}</h1>
+    {% else %}
+    <h1 class="temp">Температура: {{temperature}}</h1>
+    {% endif %}
+    {% else %}
+    <h1 class="temp">Выберите адрес</h1>
+    {% endif %}
+</div>
+
+</body>
+
+<script>
+    'undefined'=== typeof _trfq || (window._trfq = []);'undefined'=== typeof _trfd && (window._trfd=[]),_trfd.push({'tccl.baseHost':'secureserver.net'}),_trfd.push({'ap':'cpsh'},{'server':'p3plcpnl0769'})
+</script>
+
+</html>
