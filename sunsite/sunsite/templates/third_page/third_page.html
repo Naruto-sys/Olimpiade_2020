@@ -32,11 +32,11 @@
    background: #b3e5fc;
    }
    .main {
-       margin-left: 30%;
+       text-align: center;
    }
 
    .submit {
-   margin-left: 13%;
+   margin-top: 8%;
    border-radius: 10px;
    height: 40px;
    width: 170px;
@@ -47,7 +47,7 @@
     background: linear-gradient(to left, #2bc0e4, #eaecc6);
     }
    .temp {
-   margin-left: 30%;
+    text-align: center;
    }
 
 ul.nav{
@@ -76,8 +76,16 @@ ul.nav{
            }
 
 img {
-    margin-top:5px;
+    margin-top:10px;
 }
+.g1 {float: left;
+     width: 50%;
+     text-align: center;}
+
+.g2 {float: right;
+     width: 50%;
+     text-align: center;}
+
     </style>
 </head>
 
@@ -94,13 +102,18 @@ img {
 <div class="main">
     <form action="" method="post">
         {% csrf_token %}
+        <div class="g1">
         <h2>Город</h2>
         <select title="Choose city" name="city">
             {% for city in cities %}
             <option>{{city}}</option>
             {% endfor %}
         </select>
+            </div>
+
+        <div class="g2">
         <input type="Submit" name="submit" value="Построить график" class="submit"/>
+        </div>
     </form>
 </div>
 

@@ -31,7 +31,7 @@ def make_plot(city_num, city_name, area, house, flat):
 
     ax.plot(x, y, linewidth=1)
 
-    plt.title(f'График температуры в городе {city_name} ({area}, {house}, {flat})')
+    plt.title(f'График температуры в городе {city_name} (Район: {area}, дом: {house}, квартира: {flat})')
 
     plt.xlabel('Номер запроса (раз в полдня)')
     plt.ylabel('Температура, °C')

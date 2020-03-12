@@ -37,9 +37,9 @@ def make_plot(city_num, city_name):
             area4.extend(int(_) for _ in elem[1].split('*'))
 
     max1 = max(area1)
-    max2 = max(area1)
-    max3 = max(area1)
-    max4 = max(area1)
+    max2 = max(area2)
+    max3 = max(area3)
+    max4 = max(area4)
 
     x = np.arange(1, 5)
     y = np.array([max1, max2, max3, max4])

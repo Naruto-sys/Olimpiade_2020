@@ -118,7 +118,6 @@ def main(request):
         try:
             temperature = int(final_response.json()['data']['temperature'])
             temperature = str(final_response.json()['data']['temperature']) + '°'
-            print(temperature)
         except Exception:
             temperature = 'Адрес введён некорректно!'
 
