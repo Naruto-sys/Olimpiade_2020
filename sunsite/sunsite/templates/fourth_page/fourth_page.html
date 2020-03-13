@@ -32,11 +32,11 @@
    background: #b3e5fc;
    }
    .main {
-       margin-left: 10%;
+       text-align: center;
    }
 
    .submit {
-   margin-left: 30%;
+   margin-top: 3%;
    border-radius: 10px;
    height: 40px;
    width: 170px;
@@ -47,11 +47,11 @@
     background: linear-gradient(to left, #2bc0e4, #eaecc6);
     }
    .temp {
-   margin-left: 30%;
+   text-align: center;
    }
 img {margin-top: 10px;}
 ul.nav{
-        text-align:center;
+      text-align:center;
       margin-left: 0px;
       padding-left: 0px;
       list-style: none;
@@ -74,6 +74,15 @@ ul.nav{
                background-color: #333;
                color: #f4f4f4;
            }
+.g1 {float: left;
+     width: 50%;
+     text-align: center;}
+
+.g2 {float: right;
+     width: 50%;
+     text-align: center;}
+
+
     </style>
 </head>
 
@@ -90,6 +99,7 @@ ul.nav{
 <div class="main">
     <form action="" method="post">
         {% csrf_token %}
+        <div class="g1">
         <h2>Город</h2>
         <select title="Choose city" name="city">
             {% for city in cities %}
@@ -97,7 +107,6 @@ ul.nav{
             {% endfor %}
         </select>
 
-        <p></p>
 
         <h2>Район</h2>
         <select title="Choose area" name="area"  >
@@ -105,9 +114,8 @@ ul.nav{
             <option>{{area}}</option>
             {% endfor %}
         </select>
-
-        <p></p>
-
+        </div>
+        <div class="g2">
         <h2>Дом</h2>
         <select title="Choose house" name="house">
             {% for house in range_house %}
@@ -115,17 +123,13 @@ ul.nav{
             {% endfor %}
         </select>
 
-        <p></p>
-
         <h2>Квартира</h2>
         <select title="Choose flat" name="flat">
             {% for flat in range_flat %}
             <option>{{flat}}</option>
             {% endfor %}
         </select>
-
-        <p></p>
-
+        </div>
         <input type="Submit" name="submit" value="Построить график" class="submit"/>
     </form>
 </div>
